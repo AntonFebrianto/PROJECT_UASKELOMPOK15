@@ -10,6 +10,13 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^6.2.1
+  intl:
+  flutter_localizations:
+    sdk: flutter
+  http:
+  image_picker: ^0.8.7+4
+  permission_handler: ^10.3.0
+  zoom_widget:
 
 dev_dependencies:
   flutter_test:

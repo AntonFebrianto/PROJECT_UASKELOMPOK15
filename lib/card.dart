@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_3/detail_page.dart';
 
 class CardContainer extends StatelessWidget {
-  const CardContainer(
-      {super.key,
-      required this.no,
-      required this.name,
-      required this.address,
-      required this.desc});
+  const CardContainer({
+    super.key,
+    required this.no,
+    required this.name,
+    required this.address,
+    required this.price,
+    required this.desc,
+  });
 
-  final int no;
+  final int no, price;
   final String name, address, desc;
 
   @override
@@ -23,8 +25,13 @@ class CardContainer extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) =>
-                  DetailPage(no: no, name: name, address: address, desc: desc),
+              builder: (_) => DetailPage(
+                no: no,
+                name: name,
+                price: price,
+                address: address,
+                desc: desc,
+              ),
             ),
           );
         },

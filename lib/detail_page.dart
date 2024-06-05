@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/constant/permission.dart';
+import 'package:flutter_application_3/payment_page.dart';
+import 'package:intl/intl.dart';
 
 class DetailPage extends StatelessWidget {
-  const DetailPage(
-      {super.key,
-      required this.no,
-      required this.name,
-      required this.address,
-      required this.desc});
+  const DetailPage({
+    super.key,
+    required this.no,
+    required this.name,
+    required this.address,
+    required this.price,
+    required this.desc,
+  });
 
-  final int no;
+  final int no, price;
   final String name, address, desc;
 
   @override
@@ -48,6 +53,18 @@ class DetailPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(address),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              top: 20,
+                              bottom: 4,
+                            ),
+                            child: Text(
+                              'Harga',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Text(
+                              'Rp ${NumberFormat('#,##0', 'ID').format(price)}/jam'),
                           Padding(
                             padding: const EdgeInsets.only(top: 20),
                             child: Column(
@@ -135,7 +152,23 @@ class DetailPage extends StatelessWidget {
                                 ),
                               ),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  final hasFilePermission =
+                                      await PermissionDevice()
+                                          .requestFilePermission();
+
+                                  if (hasFilePermission) {
+                                    // ignore: use_build_context_synchronously
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return PaymentPage(
+                                        price: price,
+                                        image: image,
+                                        name: name,
+                                      );
+                                    }));
+                                  }
+                                },
                                 child: const Text('Proses Pembayaran'),
                               )
                             ],
