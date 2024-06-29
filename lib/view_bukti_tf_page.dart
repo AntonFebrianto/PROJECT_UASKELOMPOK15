@@ -36,7 +36,7 @@ class _ViewPictureState extends State<ViewPicture> {
               enableScroll: false,
               child: Center(
                   child: Image.network(
-                'https://sukucadang.encepmotor.com/booking/api/${widget.imagePath}',
+                'https://sukucadang.encepmotor.com/booking/api/${widget.imagePath}', //api
                 fit: BoxFit.fitWidth,
                 width: kWidth / 1.2,
               )),
